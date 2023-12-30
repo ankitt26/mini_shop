@@ -6,7 +6,7 @@ import { TbLoader3 } from "react-icons/tb";
 export default function Login() {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
-  const { data, isLoading, error } = useSelector((state) => state.login);
+  const { isLoading, error } = useSelector((state) => state.login);
   const dispatch = useDispatch();
 
   const submitdata = (e) => {

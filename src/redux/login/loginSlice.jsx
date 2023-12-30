@@ -1,13 +1,15 @@
+import useLocalStorage from "../../hooks/localStorage";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const url = "https://dummyjson.com/auth/login";
+
 const FetchUser = createAsyncThunk("Fetch User", async (credentials) => {
-  console.log(credentials);
+  const { setdata } = useLocalStorage();
   try {
     const response = await axios.post(url, credentials);
     const { data } = response;
-    console.log(data);
+    setdata(data.token);
     return data;
   } catch (error) {
     throw new Error("Something went wrong! :", error);
