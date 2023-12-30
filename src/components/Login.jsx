@@ -1,16 +1,34 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { FetchUser } from "../redux/login/loginSlice";
+import { TbLoader3 } from "react-icons/tb";
+
 export default function Login() {
-  const [email, setemail] = useState("");
+  const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
+  const { data, isLoading, error } = useSelector((state) => state.login);
+  const dispatch = useDispatch();
 
   const submitdata = (e) => {
     e.preventDefault();
-    const userdata = {
-      email: email,
+    const Credentials = {
+      username: username,
       password: password,
     };
+    console.log(Credentials);
+    dispatch(FetchUser(Credentials));
+  };
 
-    console.log(userdata);
+  const errorhere = () => {
+    if (error) {
+      return <p className="text-red-400">⚠️ Invalid Username or Password</p>;
+    }
+  };
+
+  const loader = () => {
+    if (isLoading) {
+      return <TbLoader3 className="animate-spin text-4xl text-blue-300" />;
+    }
   };
 
   return (
@@ -25,20 +43,20 @@ export default function Login() {
         >
           <div className="flex w-full flex-col gap-2">
             <label
-              htmlFor="email"
+              htmlFor="username"
               className="text-sm font-medium text-gray-300"
             >
-              Your email
+              Your username
             </label>
             <input
-              type="email"
-              name="email"
-              id="email"
+              type="text"
+              name="username"
+              id="username"
               className="h-10 w-full rounded-md border border-gray-300 bg-gray-50 pl-2 text-gray-900"
-              placeholder="name@email.com"
-              autoComplete="email"
-              onChange={(e) => setemail(e.target.value)}
-              value={email}
+              placeholder="username"
+              autoComplete="username"
+              onChange={(e) => setusername(e.target.value)}
+              value={username}
               required
             />
           </div>
@@ -63,7 +81,8 @@ export default function Login() {
               required
             />
           </div>
-
+          {errorhere()}
+          {loader()}
           <button
             type="submit"
             className="mt-5 flex w-full justify-center rounded-md bg-blue-800 px-8 py-3 text-white"
