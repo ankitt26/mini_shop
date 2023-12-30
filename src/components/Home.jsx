@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";
+import { MdShoppingCart } from "react-icons/md";
+import Header from "./Header";
 
 const YourComponent = () => {
   const url = "https://dummyjson.com/products/";
@@ -23,8 +25,9 @@ const YourComponent = () => {
   }, []);
 
   return (
-    <div>
-      <div>
+    <>
+      <Header />
+      <div className="mt-28">
         <p className="mt-5 text-center font-medium">
           {" "}
           Discover Endless Choices: Your One-Stop Shop for Quality Products at
@@ -73,16 +76,18 @@ const YourComponent = () => {
                 </p>
                 <button
                   type="button"
-                  class="mt-2 w-full rounded-lg bg-slate-900 py-2.5 text-sm font-medium  text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 "
+                  class="mt-2 flex w-full flex-row items-center justify-center rounded-lg bg-slate-900 py-3 text-sm font-medium  text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 "
                 >
-                  Add to cart
+                  <MdShoppingCart className="mr-2 text-xl  font-medium text-white" />
+
+                  <span> Add to cart</span>
                 </button>
               </div>
             </div>
           </Link>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
