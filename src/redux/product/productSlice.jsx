@@ -24,7 +24,20 @@ const ProductSlice = createSlice({
     addToCart: (state, action) => {
       state.cart += action.payload;
     },
+    searchItem: (state, action) => {
+      const newprod = state.products.filter(
+        (prod) =>
+          prod.brand.toLowerCase().includes(action.payload.toLowerCase()) ||
+          prod.title.toLowerCase().includes(action.payload.toLowerCase()) ||
+          prod.category.toLowerCase().includes(action.payload.toLowerCase()),
+      );
+      return {
+        ...state,
+        products: newprod,
+      };
+    },
   },
+
   extraReducers: (builder) => {
     builder.addCase(FetchProducts.pending, (state) => ({
       ...state,
@@ -47,4 +60,4 @@ const ProductSlice = createSlice({
 
 export default ProductSlice.reducer;
 export { FetchProducts };
-export const { addToCart } = ProductSlice.actions;
+export const { addToCart, searchItem } = ProductSlice.actions;
