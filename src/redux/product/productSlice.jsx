@@ -37,15 +37,13 @@ const ProductSlice = createSlice({
       };
     },
     priceFilter: (state, action) => {
-      console.log(action.payload);
       let minPrice = parseInt(action.payload[0]);
       let maxPrice = parseInt(action.payload[1]);
 
-      console.log(minPrice, maxPrice);
       const filteredProduct = state.products.filter(
         (product) => product.price >= minPrice && product.price <= maxPrice,
       );
-      console.log(filteredProduct);
+
       return { ...state, products: filteredProduct };
     },
   },
