@@ -30,6 +30,9 @@ export default function Header() {
           <h1 className=" py-2 text-5xl font-extrabold text-gray-100 sm:hidden">
             Mini Shop
           </h1>
+          <h1 className="hidden py-2 text-lg font-bold text-gray-100 sm:block">
+            MS
+          </h1>
         </Link>
         <div className="flex flex-row items-center justify-between">
           <div className="">
@@ -40,7 +43,7 @@ export default function Header() {
               onKeyDown={(e) => {
                 if (e.key === "Enter") onsearch();
               }}
-              className="w-[300px] rounded-md bg-slate-700 p-2 text-sm font-medium text-gray-100 sm:w-[250px]"
+              className="w-[300px] rounded-md bg-slate-700 p-2 text-sm font-medium text-gray-100 sm:w-[240px]"
               placeholder="Search Electronics, Clothes ..."
             />
             <button
