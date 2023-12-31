@@ -37,6 +37,15 @@ export default function Products() {
     );
   }
 
+  if (products.length === 0) {
+    return (
+      <div className="top-40 flex h-[70vh] flex-col items-center justify-center text-center">
+        <TbFaceIdError className="animate-pulse text-8xl font-bold text-slate-700" />
+        <p className="text-2xl">⚠️ No Product Found</p>
+      </div>
+    );
+  }
+
   return (
     <div className="mt-10 flex flex-row flex-wrap items-start justify-evenly gap-y-10">
       {products.map((product) => (
