@@ -6,12 +6,17 @@ export default function Filter() {
   const [maxval, setmaxval] = useState(1000);
   const dispatch = useDispatch();
   const filterbyPrice = () => {
-    console.log(minval, maxval);
     dispatch(priceFilter([minval, maxval]));
+
+    const popup = document.getElementById("filter_pop");
+    popup.classList.toggle("hidden");
   };
   return (
     <>
-      <div className="fixed top-0 z-[9] flex h-screen w-[350px] flex-col justify-between rounded-md bg-white p-3 shadow-2xl">
+      <div
+        className="fixed top-0 z-[9] flex hidden h-screen w-[350px] flex-col justify-between rounded-md bg-white p-3 shadow-2xl"
+        id="filter_pop"
+      >
         <div>
           <h3 className="mt-20 bg-slate-900 text-center text-xl font-semibold text-white">
             Filters
@@ -19,7 +24,7 @@ export default function Filter() {
           <h4 className=" mt-2 text-lg font-semibold">Price </h4>
           <hr />
           <div className="mt-2 flex flex-row items-center justify-center gap-4">
-            <label for="min" className="w-1/6">
+            <label htmlFor="min" className="w-1/6">
               Min -
             </label>
             <input
@@ -27,9 +32,12 @@ export default function Filter() {
               placeholder="00"
               value={minval}
               onChange={(e) => setminval(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") filterbyPrice();
+              }}
               className=" w-1/3 appearance-none rounded-md border-2 pl-2"
             />
-            <label for="max" className="w-1/6">
+            <label htmlFor="max" className="w-1/6">
               Max -
             </label>
             <input
@@ -37,6 +45,9 @@ export default function Filter() {
               placeholder="1000"
               value={maxval}
               onChange={(e) => setmaxval(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") filterbyPrice();
+              }}
               className=" w-1/3 rounded-md border-2 pl-2"
             />
           </div>

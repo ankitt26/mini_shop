@@ -22,6 +22,11 @@ export default function Products() {
     dispatch(addToCart(price));
   };
 
+  const showfilters = () => {
+    const popup = document.getElementById("filter_pop");
+    popup.classList.toggle("hidden");
+  };
+
   if (isLoading) {
     return (
       <div className=" absolute left-[47.5%] top-[47.5%]">
@@ -51,7 +56,10 @@ export default function Products() {
   return (
     <>
       <div className="mt-28 flex flex-row items-center justify-between px-[2%] sm:mt-20 sm:items-start sm:justify-center">
-        <button className="mr-20 flex h-fit w-fit cursor-pointer flex-row items-center justify-center rounded-md bg-slate-800 px-2 py-1 text-sm font-medium text-white shadow-xl hover:bg-slate-700">
+        <button
+          className="mr-20 flex h-fit w-fit cursor-pointer flex-row items-center justify-center rounded-md bg-slate-800 px-2 py-1 text-sm font-medium text-white shadow-xl hover:bg-slate-700"
+          onClick={showfilters}
+        >
           <CiFilter className="text-2xl" />
           <span>filter</span>
         </button>
