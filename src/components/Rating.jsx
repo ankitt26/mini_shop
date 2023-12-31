@@ -1,5 +1,5 @@
-import React from "react";
 import { FaStar, FaStarHalf } from "react-icons/fa";
+import PropTypes from "prop-types";
 
 export default function Rating({ value }) {
   const renderStars = () => {
@@ -25,3 +25,7 @@ export default function Rating({ value }) {
     </div>
   );
 }
+
+Rating.propTypes = {
+  value: PropTypes.number,
+};
