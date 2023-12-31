@@ -36,6 +36,18 @@ const ProductSlice = createSlice({
         products: newprod,
       };
     },
+    priceFilter: (state, action) => {
+      console.log(action.payload);
+      let minPrice = parseInt(action.payload[0]);
+      let maxPrice = parseInt(action.payload[1]);
+
+      console.log(minPrice, maxPrice);
+      const filteredProduct = state.products.filter(
+        (product) => product.price >= minPrice && product.price <= maxPrice,
+      );
+      console.log(filteredProduct);
+      return { ...state, products: filteredProduct };
+    },
   },
 
   extraReducers: (builder) => {
@@ -60,4 +72,4 @@ const ProductSlice = createSlice({
 
 export default ProductSlice.reducer;
 export { FetchProducts };
-export const { addToCart, searchItem } = ProductSlice.actions;
+export const { addToCart, searchItem, priceFilter } = ProductSlice.actions;
