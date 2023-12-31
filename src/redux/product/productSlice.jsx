@@ -25,26 +25,27 @@ const ProductSlice = createSlice({
       state.cart += action.payload;
     },
     searchItem: (state, action) => {
-      const newprod = state.products.filter(
+      const searchTerm = action.payload.toLowerCase();
+      state.products = state.products.filter(
         (prod) =>
-          prod.brand.toLowerCase().includes(action.payload.toLowerCase()) ||
-          prod.title.toLowerCase().includes(action.payload.toLowerCase()) ||
-          prod.category.toLowerCase().includes(action.payload.toLowerCase()),
+          prod.brand.toLowerCase().includes(searchTerm) ||
+          prod.title.toLowerCase().includes(searchTerm) ||
+          prod.category.toLowerCase().includes(searchTerm),
       );
-      return {
-        ...state,
-        products: newprod,
-      };
     },
     priceFilter: (state, action) => {
       let minPrice = parseInt(action.payload[0]);
       let maxPrice = parseInt(action.payload[1]);
 
-      const filteredProduct = state.products.filter(
+      state.products = state.products.filter(
         (product) => product.price >= minPrice && product.price <= maxPrice,
       );
-
-      return { ...state, products: filteredProduct };
+    },
+    lowToHighPrice: (state) => {
+      state.products = state.products.slice().sort((a, b) => a.price - b.price);
+    },
+    highToLowPrice: (state) => {
+      state.products = state.products.slice().sort((a, b) => b.price - a.price);
     },
   },
 
@@ -70,4 +71,10 @@ const ProductSlice = createSlice({
 
 export default ProductSlice.reducer;
 export { FetchProducts };
-export const { addToCart, searchItem, priceFilter } = ProductSlice.actions;
+export const {
+  addToCart,
+  searchItem,
+  priceFilter,
+  highToLowPrice,
+  lowToHighPrice,
+} = ProductSlice.actions;

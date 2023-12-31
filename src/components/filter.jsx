@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { priceFilter } from "../redux/product/productSlice";
+import {
+  lowToHighPrice,
+  highToLowPrice,
+  priceFilter,
+} from "../redux/product/productSlice";
 export default function Filter() {
   const [minval, setminval] = useState(0);
   const [maxval, setmaxval] = useState(1000);
@@ -21,8 +25,8 @@ export default function Filter() {
           <h3 className="mt-20 bg-slate-900 text-center text-xl font-semibold text-white">
             Filters
           </h3>
-          <h4 className=" mt-2 text-lg font-semibold">Price </h4>
-          <hr />
+          <h4 className=" mt-2 text-sm font-semibold">Price : </h4>
+
           <div className="mt-2 flex flex-row items-center justify-center gap-4">
             <label htmlFor="min" className="w-1/6">
               Min -
@@ -51,6 +55,26 @@ export default function Filter() {
               className=" w-1/3 rounded-md border-2 pl-2"
             />
           </div>
+          <hr className="mt-4" />
+          <h4 className=" mt-2 text-sm font-semibold">Sort by : </h4>
+
+          <div className="mt-2 flex flex-row items-center justify-end gap-10">
+            <button
+              onClick={() => dispatch(lowToHighPrice())}
+              className="rounded-md bg-gray-500 px-4 py-1 text-xs text-white"
+            >
+              {" "}
+              Low to high
+            </button>
+            <button
+              onClick={() => dispatch(highToLowPrice())}
+              className="ml-10 rounded-md bg-gray-500 px-4 py-1 text-xs text-white"
+            >
+              {" "}
+              High to low
+            </button>
+          </div>
+          <hr className="mt-4" />
         </div>
         <button
           className="me-2 w-full rounded-lg border-2 border-green-500 bg-green-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-white hover:text-green-400 focus:outline-none focus:ring-4 focus:ring-green-300 "
