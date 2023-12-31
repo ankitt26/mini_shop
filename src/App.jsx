@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const user = useSelector((state) => state.login);
-  console.log(user.data.length);
+  // console.log(user.data.length);
 
   const isloggedIn = () => {
     if (user.data.length === 0) {

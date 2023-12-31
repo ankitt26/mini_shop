@@ -15,7 +15,6 @@ export default function Login() {
       username: username,
       password: password,
     };
-    console.log(Credentials);
     dispatch(FetchUser(Credentials));
   };
 
