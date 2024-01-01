@@ -34,7 +34,9 @@ export default function Products() {
 
   const showfilters = () => {
     const popup = document.getElementById("filter_pop");
-    popup.classList.toggle("hidden");
+    popup.classList.add("animate-slideFromLeft");
+    popup.classList.remove("animate-slideFromRight");
+    popup.classList.remove("hidden");
   };
 
   if (isLoading) {

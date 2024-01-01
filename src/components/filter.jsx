@@ -12,7 +12,12 @@ export default function Filter() {
 
   const popUpClose = () => {
     const popup = document.getElementById("filter_pop");
-    popup.classList.toggle("hidden");
+    popup.classList.remove("animate-slideFromLeft");
+    popup.classList.add("animate-slideFromRight");
+
+    setTimeout(() => {
+      popup.classList.toggle("hidden");
+    }, 1000);
   };
   const filterbyPrice = () => {
     dispatch(priceFilter([minval, maxval]));
