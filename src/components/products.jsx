@@ -90,7 +90,7 @@ export default function Products() {
           <Link to={`/`} key={item.id}>
             <div
               key={item.id}
-              className="flex h-fit w-[350px] flex-col items-center justify-start rounded-md border bg-slate-50 py-6 shadow-xl"
+              className="animate-slideFromTop flex h-fit w-[350px] flex-col items-center justify-start rounded-md border bg-slate-50 py-6 shadow-xl"
             >
               <div>
                 <img
