@@ -11,6 +11,7 @@
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
   - [🚀 See Live ](#-see-live-)
+  - [🔐 Credentials  ](#-credentials--)
   - [💻 Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
@@ -54,12 +55,20 @@ In this Project I have created a React SPA shopping Website.
 
 ## 🚀 See Live <a name="live-demo"></a>
 
-```sh
-coming soon...
+
+> [ 💨 Live link](https://minishop-ankitt26.onrender.com/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- CREDENTIALS -->
+
+## 🔐 Credentials <a name="credentials"> </a>
 ```
-
-<!-- > [ 💨 Landing page ](#) -->
-
+👲🏻username:  kminchelle 
+🗝️password:  0lelplR
+```
+ 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
@@ -128,11 +137,7 @@ coming soon...
 
 You can deploy this project using:
 
-```
-coming soon...
-```
-
-<!-- > ✅ deployed on render [ see live 🎉 ](#) -->
+> ✅ deployed on render [ see live 🎉 ](https://minishop-ankitt26.onrender.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -175,7 +180,7 @@ Feel free to check the [issues page](../../issues/).
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-> I would like to thank .... for giving me the opportunity to create a minishop
+> I would like to thank [Build With Innovation Private Limited](https://buildwithinnovation.com/) for giving me the opportunity to create a minishop E-commerce shopping website.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
