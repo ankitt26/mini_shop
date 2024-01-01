@@ -16,6 +16,7 @@ const ProductSlice = createSlice({
   name: "products",
   initialState: {
     products: [],
+    searchedItem: [],
     cart: 0,
     isLoading: false,
     error: null,
@@ -26,7 +27,7 @@ const ProductSlice = createSlice({
     },
     searchItem: (state, action) => {
       const searchTerm = action.payload.toLowerCase();
-      state.products = state.products.filter(
+      state.searchedItem = state.products.filter(
         (prod) =>
           prod.brand.toLowerCase().includes(searchTerm) ||
           prod.title.toLowerCase().includes(searchTerm) ||

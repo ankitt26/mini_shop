@@ -16,11 +16,15 @@ export default function Header() {
   };
 
   const onsearch = () => {
-    if (search !== "") {
-      dispatch(searchItem(search));
+    const searchTerm = search.trim().replace(/\s/g, "");
+
+    if (search !== " ") {
+      dispatch(searchItem(searchTerm));
     } else {
       dispatch(FetchProducts());
     }
+
+    setsearch(" ");
   };
 
   return (
