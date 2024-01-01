@@ -12,11 +12,21 @@ import Filter from "./filter";
 
 export default function Products() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(FetchProducts());
-  }, [dispatch]);
+  }, []);
 
-  const { products, isLoading, error } = useSelector((state) => state.products);
+  const { products, searchedItem, isLoading, error } = useSelector(
+    (state) => state.products,
+  );
+
+  let items;
+  if (searchedItem.length === 0) {
+    items = products;
+  } else {
+    items = searchedItem;
+  }
 
   const add = (price) => {
     dispatch(addToCart(price));
@@ -24,7 +34,9 @@ export default function Products() {
 
   const showfilters = () => {
     const popup = document.getElementById("filter_pop");
-    popup.classList.toggle("hidden");
+    popup.classList.add("animate-slideFromLeft");
+    popup.classList.remove("animate-slideFromRight");
+    popup.classList.remove("hidden");
   };
 
   if (isLoading) {
@@ -44,7 +56,7 @@ export default function Products() {
     );
   }
 
-  if (products.length === 0) {
+  if (items.length === 0) {
     return (
       <div className="top-40 flex h-[70vh] flex-col items-center justify-center text-center">
         <TbFaceIdError className="animate-pulse text-8xl font-bold text-slate-700" />
@@ -74,49 +86,49 @@ export default function Products() {
       <Filter />
 
       <div className="mt-10 flex flex-row flex-wrap items-start justify-evenly gap-y-10">
-        {products.map((product) => (
-          <Link to={`/`} key={product.id}>
+        {items.map((item) => (
+          <Link to={`/`} key={item.id}>
             <div
-              key={product.id}
-              className="flex h-fit w-[350px] flex-col items-center justify-start rounded-md border bg-slate-50 py-6 shadow-xl"
+              key={item.id}
+              className="animate-slideFromTop flex h-fit w-[350px] flex-col items-center justify-start rounded-md border bg-slate-50 py-6 shadow-xl"
             >
               <div>
                 <img
-                  src={product.thumbnail}
-                  alt={product.title}
+                  src={item.thumbnail}
+                  alt={item.title}
                   className="h-[170px] w-[300px] rounded-md border object-cover"
                 />
                 <span className="right relative bottom-52 right-8 rounded-md bg-slate-900 px-2 text-center text-sm font-medium text-white">
-                  {product.discountPercentage}% off
+                  {item.discountPercentage}% off
                 </span>
               </div>
               <div className="flex w-full flex-col justify-start gap-2 px-6">
                 <h2 className="text-wrap break-words text-xl tracking-tight text-slate-900">
-                  {product.title.slice(0, 30)}
+                  {item.title.slice(0, 30)}
                 </h2>
                 <div className="flex flex-row items-center justify-between">
                   <h2 className="text-3xl font-bold text-slate-900">
-                    ${product.price}
+                    ${item.price}
                   </h2>
                   <div className="flex flex-row items-center justify-between">
-                    <Rating value={product.rating} />
+                    <Rating value={item.rating} />
                     <p className="rounded bg-yellow-200 px-2 text-xs font-semibold text-gray-900">
-                      {product.rating}
+                      {item.rating}
                     </p>
                   </div>
                 </div>
                 <p className="text-sm font-bold text-slate-700">
                   Stock :
-                  <span className="text-red-500"> {product.stock} left</span>
+                  <span className="text-red-500"> {item.stock} left</span>
                 </p>
                 <p className="text-sm">
-                  {product.description.slice(0, 75)}....
+                  {item.description.slice(0, 75)}....
                   <span className="font-bold underline">more</span>
                 </p>
                 <button
                   type="button"
                   className="mt-2 flex w-full flex-row items-center justify-center rounded-lg bg-slate-900 py-3 text-sm font-medium  text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 "
-                  onClick={() => add(product.price)}
+                  onClick={() => add(item.price)}
                 >
                   <MdShoppingCart className="mr-2 text-xl  font-medium text-white" />
 

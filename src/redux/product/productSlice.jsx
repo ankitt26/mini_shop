@@ -16,6 +16,7 @@ const ProductSlice = createSlice({
   name: "products",
   initialState: {
     products: [],
+    searchedItem: [],
     cart: 0,
     isLoading: false,
     error: null,
@@ -26,7 +27,7 @@ const ProductSlice = createSlice({
     },
     searchItem: (state, action) => {
       const searchTerm = action.payload.toLowerCase();
-      state.products = state.products.filter(
+      state.searchedItem = state.products.filter(
         (prod) =>
           prod.brand.toLowerCase().includes(searchTerm) ||
           prod.title.toLowerCase().includes(searchTerm) ||
@@ -37,15 +38,19 @@ const ProductSlice = createSlice({
       let minPrice = parseInt(action.payload[0]);
       let maxPrice = parseInt(action.payload[1]);
 
-      state.products = state.products.filter(
+      state.searchedItem = state.products.filter(
         (product) => product.price >= minPrice && product.price <= maxPrice,
       );
     },
     lowToHighPrice: (state) => {
-      state.products = state.products.slice().sort((a, b) => a.price - b.price);
+      state.searchedItem = state.searchedItem
+        .slice()
+        .sort((a, b) => a.price - b.price);
     },
     highToLowPrice: (state) => {
-      state.products = state.products.slice().sort((a, b) => b.price - a.price);
+      state.searchedItem = state.searchedItem
+        .slice()
+        .sort((a, b) => b.price - a.price);
     },
   },
 

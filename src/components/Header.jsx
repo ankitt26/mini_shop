@@ -16,17 +16,21 @@ export default function Header() {
   };
 
   const onsearch = () => {
-    if (search !== "") {
-      dispatch(searchItem(search));
+    const searchTerm = search.trim().replace(/\s/g, "");
+
+    if (search !== " ") {
+      dispatch(searchItem(searchTerm));
     } else {
       dispatch(FetchProducts());
     }
+
+    setsearch("");
   };
 
   return (
     <>
       <div className="fixed top-0 z-10 flex w-full flex-row items-center justify-between border-b-4 border-gray-100 bg-slate-900 px-20 py-2 shadow-2xl sm:px-2 md:px-5">
-        <Link to="/" onClick={() => dispatch(FetchProducts())}>
+        <Link onClick={() => dispatch(searchItem(" "))}>
           <h1 className=" py-2 text-5xl font-extrabold text-gray-100 sm:hidden">
             Mini Shop
           </h1>

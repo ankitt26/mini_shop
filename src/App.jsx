@@ -18,7 +18,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>{isloggedIn()}</Routes>
+      <Routes>
+        {isloggedIn()}
+        <Route path="/home" element={<Home />} />
+      </Routes>
     </BrowserRouter>
   );
 }
