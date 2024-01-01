@@ -24,7 +24,7 @@ export default function Header() {
       dispatch(FetchProducts());
     }
 
-    setsearch(" ");
+    setsearch("");
   };
 
   return (

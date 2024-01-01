@@ -12,17 +12,17 @@ import Filter from "./filter";
 
 export default function Products() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(FetchProducts());
-  }, [dispatch]);
+  }, []);
 
   const { products, searchedItem, isLoading, error } = useSelector(
     (state) => state.products,
   );
 
   let items;
-
-  if (!searchedItem) {
+  if (searchedItem.length === 0) {
     items = products;
   } else {
     items = searchedItem;

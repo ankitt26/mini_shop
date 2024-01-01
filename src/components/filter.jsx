@@ -9,11 +9,24 @@ export default function Filter() {
   const [minval, setminval] = useState(0);
   const [maxval, setmaxval] = useState(1000);
   const dispatch = useDispatch();
-  const filterbyPrice = () => {
-    dispatch(priceFilter([minval, maxval]));
 
+  const popUpClose = () => {
     const popup = document.getElementById("filter_pop");
     popup.classList.toggle("hidden");
+  };
+  const filterbyPrice = () => {
+    dispatch(priceFilter([minval, maxval]));
+    popUpClose();
+  };
+
+  const sortLowToHigh = () => {
+    dispatch(lowToHighPrice());
+    popUpClose();
+  };
+
+  const sortHighToLow = () => {
+    dispatch(highToLowPrice());
+    popUpClose();
   };
   return (
     <>
@@ -60,14 +73,14 @@ export default function Filter() {
 
           <div className="mt-2 flex flex-row items-center justify-end gap-10">
             <button
-              onClick={() => dispatch(lowToHighPrice())}
+              onClick={sortLowToHigh}
               className="rounded-md bg-gray-500 px-4 py-1 text-xs text-white"
             >
               {" "}
               Low to high
             </button>
             <button
-              onClick={() => dispatch(highToLowPrice())}
+              onClick={sortHighToLow}
               className="ml-10 rounded-md bg-gray-500 px-4 py-1 text-xs text-white"
             >
               {" "}
